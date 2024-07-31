@@ -1,36 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './UpdateModal.css';
 
-function UpdateModal({ blog, onClose, onSave }) {
-  const [title, setTitle] = useState(blog.title);
-  const [body, setBody] = useState(blog.body);
+function UpdateModal({ blog, mode, onClose, onSave }) {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
-  const handleSave = () => {
+  useEffect(() => {
+    if (blog) {
+      setTitle(blog.title || '');
+      setBody(blog.body || '');
+    }
+  }, [blog]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const updatedBlog = { ...blog, title, body };
-    onSave(updatedBlog); // Pass updated blog to the parent component
+    onSave(updatedBlog);
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h1>Update Blog Post</h1>
-        <label>
-          Title:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-        <label>
-          Body:
-          <textarea
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-          />
-        </label>
-        <button onClick={handleSave}>Save</button>
-        <button onClick={onClose}>Cancel</button>
+        <h2>{mode === 'add' ? 'Add New Blog' : 'Update Blog'}</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Title:
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Content:
+            <textarea
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              required
+            ></textarea>
+          </label>
+          <button type="submit">{mode === 'add' ? 'Add Blog' : 'Update Blog'}</button>
+          <button type="button" onClick={onClose}>Cancel</button>
+        </form>
       </div>
     </div>
   );

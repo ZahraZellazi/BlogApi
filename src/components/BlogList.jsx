@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import BlogPost from './BlogPost';
 import UpdateModal from './UpdateModal';
+import { FaPlus } from 'react-icons/fa'; // Import the plus icon
 import './BlogList.css';
-import { listAllBlogs, deleteBlogApi, updateBlogApi } from '../api services/api';
+import { listAllBlogs, deleteBlogApi, updateBlogApi, addBlogApi } from '../api services/api';
 import { toast } from 'react-toastify';
 
 function BlogList() {
@@ -11,6 +12,7 @@ function BlogList() {
   const [loading, setLoading] = useState(true);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState(''); // 'add' or 'update'
 
   useEffect(() => {
     fetchBlogs();
@@ -58,13 +60,29 @@ function BlogList() {
       });
   };
 
-  const openModal = (blog) => {
+  const handleAdd = (newBlog) => {
+    addBlogApi(newBlog)
+      .then(added => {
+        setBlogs([added, ...blogs]); // Add the new blog at the top
+        closeModal(); // Close modal after adding
+        toast.success('Blog added successfully!');
+      })
+      .catch(error => {
+        console.error('Error adding blog:', error);
+        setError('Failed to add blog');
+        toast.error('Failed to add blog');
+      });
+  };
+
+  const openModal = (blog = null, mode = 'update') => {
     setSelectedBlog(blog);
+    setModalMode(mode);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setSelectedBlog(null);
+    setModalMode('');
     setIsModalOpen(false);
   };
 
@@ -78,6 +96,10 @@ function BlogList() {
 
   return (
     <div className="blog-list">
+      <button className="add-blog-button" onClick={() => openModal(null, 'add')}>
+        <FaPlus size={24} />
+        Add Blog
+      </button>
       {blogs.map((post, index) => (
         <BlogPost
           key={post.id}
@@ -85,15 +107,16 @@ function BlogList() {
           author={`User ${post.userId}`}
           time={`Posted ${index + 1}h ago`}
           image={`https://via.placeholder.com/300?text=Post+${post.id}`}
-          onUpdate={() => openModal(post)}
+          onUpdate={() => openModal(post, 'update')}
           onDelete={() => handleDelete(post.id)}
         />
       ))}
-      {isModalOpen && selectedBlog && (
+      {isModalOpen && (
         <UpdateModal
           blog={selectedBlog}
+          mode={modalMode}
           onClose={closeModal}
-          onSave={handleUpdate}
+          onSave={modalMode === 'update' ? handleUpdate : handleAdd}
         />
       )}
     </div>

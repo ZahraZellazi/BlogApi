@@ -4,6 +4,7 @@
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    margin-top: 70px;
   }
 
   .error-message {
@@ -17,6 +18,27 @@
     text-align: center;
     font-size: 18px;
     margin: 20px;
+  }
+  .add-blog-button {
+    background: #FF5A6F;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: absolute; /* Absolute positioning */
+    top: 360px; /* Distance from the top of the container */
+    right: 20px; /* Distance from the right of the container */
+}
+  
+  .add-blog-button:hover {
+    background: #FF2A44;
+  }
+  
+  .add-blog-button svg {
+    margin-right: 8px;
   }
   
   

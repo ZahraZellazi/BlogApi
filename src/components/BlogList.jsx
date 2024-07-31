@@ -1,21 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BlogPost from './BlogPost';
 import './BlogList.css';
+import { listAllBlogs } from '../services/api';
 
-const blogData = [
-  { title: "Don't miss a single match this season.", author: 'Rayen', time: '1h ago', image: 'url-to-image-1' },
-  { title: "Game or international tournament...", author: 'Nour', time: '2h ago', image: 'url-to-image-2' },
-  { title: "Download to start streaming...", author: 'Eya', time: '10 min ago', image: 'url-to-image-3' },
-];
 
 function BlogList() {
+  const [blogs, setBlogs] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    listAllBlogs()
+      .then(data => {
+        setBlogs(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching all blogs:', error);
+        setError('Failed to load blogs');
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="loading-message">Loading blogs...</div>;
+  }
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+
   return (
     <div className="blog-list">
-      {blogData.map((post, index) => (
-        <BlogPost key={index} {...post} />
+      {blogs.map((post, index) => (
+        <BlogPost
+          key={post.id}
+          title={post.title}
+          author={`User ${post.userId}`}
+          time={`Posted ${index + 1}h ago`}
+          image={`https://via.placeholder.com/300?text=Post+${post.id}`}
+        />
       ))}
     </div>
   );
 }
-
-export default BlogList;
+export default BlogList

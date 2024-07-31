@@ -4,7 +4,7 @@ import BlogList from './components/BlogList';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Header />
       <BlogList />
     </div>

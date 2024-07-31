@@ -13,7 +13,7 @@ function UpdateModal({ blog, onClose, onSave }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Update Blog Post</h2>
+        <h1>Update Blog Post</h1>
         <label>
           Title:
           <input

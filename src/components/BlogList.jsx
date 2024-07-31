@@ -3,6 +3,7 @@ import BlogPost from './BlogPost';
 import UpdateModal from './UpdateModal';
 import './BlogList.css';
 import { listAllBlogs, deleteBlogApi, updateBlogApi } from '../api services/api';
+import { toast } from 'react-toastify';
 
 function BlogList() {
   const [blogs, setBlogs] = useState([]);
@@ -29,14 +30,18 @@ function BlogList() {
   };
 
   const handleDelete = (id) => {
-    deleteBlogApi(id)
-      .then(() => {
-        setBlogs(blogs.filter(blog => blog.id !== id));
-      })
-      .catch(error => {
-        console.error('Error deleting blog:', error);
-        setError('Failed to delete blog');
-      });
+    if (window.confirm('Are you sure you want to delete this blog?')) {
+      deleteBlogApi(id)
+        .then(() => {
+          setBlogs(blogs.filter(blog => blog.id !== id));
+          toast.success('Blog deleted successfully!');
+        })
+        .catch(error => {
+          console.error('Error deleting blog:', error);
+          setError('Failed to delete blog');
+          toast.error('Failed to delete blog');
+        });
+    }
   };
 
   const handleUpdate = (updatedBlog) => {
@@ -44,10 +49,12 @@ function BlogList() {
       .then(updated => {
         setBlogs(blogs.map(blog => (blog.id === updated.id ? updated : blog)));
         closeModal(); // Close modal after update
+        toast.success('Blog updated successfully!');
       })
       .catch(error => {
         console.error('Error updating blog:', error);
         setError('Failed to update blog');
+        toast.error('Failed to update blog');
       });
   };
 

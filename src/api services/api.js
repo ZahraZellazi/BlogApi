@@ -1,4 +1,4 @@
-export const BASE_URL='https://jsonplaceholder.typicode.com/ZahraZellazi/BlogApi';
+export const BASE_URL='https://jsonplaceholder.typicode.com';
 // Get
 export function getAllBlogs() {
     return fetch(`${BASE_URL}/posts?_limit=8`)

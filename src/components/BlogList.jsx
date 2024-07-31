@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BlogPost from './BlogPost';
 import UpdateModal from './UpdateModal';
-import { FaPlus } from 'react-icons/fa'; // Import the plus icon
+import { FaPlus } from 'react-icons/fa'; 
 import './BlogList.css';
 import { listAllBlogs, deleteBlogApi, updateBlogApi, addBlogApi } from '../api services/api';
 import { toast } from 'react-toastify';
@@ -12,7 +12,7 @@ function BlogList() {
   const [loading, setLoading] = useState(true);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState(''); // 'add' or 'update'
+  const [modalMode, setModalMode] = useState(''); 
 
   useEffect(() => {
     fetchBlogs();
@@ -50,7 +50,7 @@ function BlogList() {
     updateBlogApi(updatedBlog.id, updatedBlog)
       .then(updated => {
         setBlogs(blogs.map(blog => (blog.id === updated.id ? updated : blog)));
-        closeModal(); // Close modal after update
+        closeModal();
         toast.success('Blog updated successfully!');
       })
       .catch(error => {
@@ -63,8 +63,8 @@ function BlogList() {
   const handleAdd = (newBlog) => {
     addBlogApi(newBlog)
       .then(added => {
-        setBlogs([added, ...blogs]); // Add the new blog at the top
-        closeModal(); // Close modal after adding
+        setBlogs([added, ...blogs]); 
+        closeModal(); 
         toast.success('Blog added successfully!');
       })
       .catch(error => {

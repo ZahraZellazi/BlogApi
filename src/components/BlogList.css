@@ -28,9 +28,9 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    position: absolute; /* Absolute positioning */
-    top: 360px; /* Distance from the top of the container */
-    right: 20px; /* Distance from the right of the container */
+    position: absolute; 
+    top: 360px; 
+    right: 20px; 
 }
   
   .add-blog-button:hover {

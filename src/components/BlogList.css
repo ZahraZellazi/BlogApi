@@ -12,11 +12,11 @@
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: border 0.1s ease, box-shadow 0.1s ease;
+  text-align: justify;
 }
 
 .blog-card:hover {
-  border: 3px solid rgb(55, 72, 110);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgb(55, 72, 110);
 }
 
 .blog-card img {
@@ -46,6 +46,7 @@
 .blog-content p {
   margin: 0 0 15px;
   color: #666;
+  text-align: justify;
 }
 
 .blog-meta {
@@ -53,14 +54,17 @@
   justify-content: space-between;
   font-size: 0.875rem;
   color: #999;
+ 
 }
 
 .blog-author {
   font-weight: bold;
+  color : black;
 }
 
 .blog-time {
   font-style: italic;
+  color : black ;
 }
 .add-blog-button {
   font-size: 20px;
@@ -91,8 +95,9 @@
   display: flex;
   justify-content: space-around;
   padding: 10px;
-  border-top: 1px solid #ddd;
-  background: #f9f9f9;
+  margin-top: 10px;
+  border-top: 1px solid rgb(55, 72, 110);
+  
 }
 
 .icon {
@@ -100,6 +105,9 @@
   font-size: 1.2rem;
   color: #666;
   transition: color 0.3s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .icon:hover {

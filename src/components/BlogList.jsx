@@ -18,17 +18,21 @@ function BlogList() {
     fetchBlogs();
   }, []);
 
-  const fetchBlogs = () => {
-    listAllBlogs()
-      .then(data => {
-        setBlogs(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching all blogs:', error);
-        setError('Failed to load blogs');
-        setLoading(false);
-      });
+  const fetchBlogs = async () => {
+    try {
+      const data = await listAllBlogs();
+      const blogsWithImages = data.map(blog => ({
+        ...blog,
+        imageUrl: `https://picsum.photos/seed/${blog.id}/300/200` // Use blog.id or any other unique identifier
+      }));
+      
+      setBlogs(blogsWithImages);
+    } catch (error) {
+      console.error('Error fetching all blogs:', error);
+      setError('Failed to load blogs');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const openModal = (blog = null, mode = 'update') => {
@@ -107,7 +111,7 @@ function BlogList() {
       <div className="blog-grid">
         {blogs.map((post) => (
           <div className="blog-card" key={post.id}>
-            <img src={`https://via.placeholder.com/300?text=Post+${post.id}`} alt={`Post ${post.id}`} className="blog-image" />
+            <img src={post.imageUrl} alt={`Post ${post.id}`} className="blog-image" />
             <div className="blog-content">
               <h3>{post.title}</h3>
               <p>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FaPlus } from 'react-icons/fa'; 
+import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa'; 
 import './BlogList.css'; 
 import { listAllBlogs, deleteBlogApi, updateBlogApi, addBlogApi } from '../api services/api';
 import { toast } from 'react-toastify';
 import UpdateModal from './UpdateModal';
+
 function BlogList() {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
@@ -105,6 +106,10 @@ function BlogList() {
                 <span className="blog-author">User {post.userId}</span>
                 <span className="blog-time">Posted 1h ago</span>
               </div>
+            </div>
+            <div className="blog-actions">
+              <FaEdit className="icon" onClick={() => openModal(post, 'update')} />
+              <FaTrash className="icon" onClick={() => handleDelete(post.id)} />
             </div>
           </div>
         ))}

@@ -1,10 +1,9 @@
 .blog-grid {
   margin-left: 60px;
-  margin-top: 80px;
+  margin-top: 180px;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px; /* Adjusted gap for better spacing */
-}
+  gap: 40px; }
 
 .blog-card {
   border: 1px solid #ddd;
@@ -73,4 +72,26 @@
 .add-blog-button:hover {
   background: rgb(55, 72, 110);
   color: white;
+}
+
+
+
+.blog-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: rgb(55, 72, 110); 
+  transform: scale(1.1);
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa'; 
-import './BlogList.css'; // Ensure the new styles are in this CSS file
+import './BlogList.css'; 
 import { listAllBlogs, deleteBlogApi, updateBlogApi, addBlogApi } from '../api services/api';
 import { toast } from 'react-toastify';
 import UpdateModal from './UpdateModal';

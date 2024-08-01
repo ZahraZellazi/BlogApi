@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa'; 
-import './BlogList.css'; 
+import "./BlogList.css" 
 import { listAllBlogs, deleteBlogApi, updateBlogApi, addBlogApi } from '../api services/api';
 import { toast } from 'react-toastify';
 import UpdateModal from './UpdateModal';

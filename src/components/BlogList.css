@@ -11,7 +11,7 @@
   overflow: hidden;
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: border 0.5s ease, box-shadow 0.1s ease;
+  transition: border 0.1s ease, box-shadow 0.1s ease;
 }
 
 .blog-card:hover {
@@ -31,7 +31,18 @@
 .blog-content h3 {
   margin: 0 0 10px;
 }
+.read-more {
+  color: rgb(55, 72, 110);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
 
+.read-more:hover {
+  text-decoration: underline;
+}
 .blog-content p {
   margin: 0 0 15px;
   color: #666;

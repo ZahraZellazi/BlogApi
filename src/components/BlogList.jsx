@@ -12,6 +12,7 @@ function BlogList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState('');
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const [expandedBlog, setExpandedBlog] = useState(null);
 
   useEffect(() => {
     fetchBlogs();
@@ -85,6 +86,14 @@ function BlogList() {
       });
   };
 
+  const toggleReadMore = (id) => {
+    if (expandedBlog === id) {
+      setExpandedBlog(null);
+    } else {
+      setExpandedBlog(id);
+    }
+  };
+
   if (loading) {
     return <div className="loading-message">Loading blogs...</div>;
   }
@@ -98,18 +107,23 @@ function BlogList() {
       <div className="blog-grid">
         {blogs.map((post) => (
           <div className="blog-card" key={post.id}>
-            <img src={`https://via.placeholder.com/300?text=Post+${post.id}`} alt={`Post ${post.id}`} />
+            <img src={`https://via.placeholder.com/300?text=Post+${post.id}`} alt={`Post ${post.id}`} className="blog-image" />
             <div className="blog-content">
               <h3>{post.title}</h3>
-              <p>{post.body}</p>
+              <p>
+                {expandedBlog === post.id ? post.body : `${post.body.slice(0, 100)}... `}
+                <button className="read-more" onClick={() => toggleReadMore(post.id)}>
+                  {expandedBlog === post.id ? 'Read Less' : 'Read More'}
+                </button>
+              </p>
               <div className="blog-meta">
                 <span className="blog-author">User {post.userId}</span>
                 <span className="blog-time">Posted 1h ago</span>
               </div>
-            </div>
-            <div className="blog-actions">
-              <FaEdit className="icon" onClick={() => openModal(post, 'update')} />
-              <FaTrash className="icon" onClick={() => handleDelete(post.id)} />
+              <div className="blog-actions">
+                <FaEdit className="icon" onClick={() => openModal(post, 'update')} />
+                <FaTrash className="icon" onClick={() => handleDelete(post.id)} />
+              </div>
             </div>
           </div>
         ))}

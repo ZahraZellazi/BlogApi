@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React , { useState, useEffect } from 'react';
 import './UpdateModal.css';
 
 function UpdateModal({ blog, mode, onClose, onSave }) {

@@ -13,7 +13,6 @@
   
   .blog-post-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px #d86c82;
   }
   
   .blog-post-image {
@@ -86,4 +85,48 @@
   .btn-delete:hover {
     background-color: #e53935;
     transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .btn-delete {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 50px;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .btn-update{
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 50px;
+      margin-left: 450px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .btn-update {
+      background-color: #81e084;
+      color: white;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    .btn-update:hover {
+      background-color: #6cc470;
+      transform: scale(1.05);
+    }
+    
+    .btn-delete {
+      background-color: #f44336;
+      color: white;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    .btn-delete:hover {
+      background-color: #e53935;
+      transform: scale(1.05);
+    }
   }

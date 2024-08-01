@@ -14,7 +14,7 @@
   background: linear-gradient(to bottom, #ffffff, #ffffff);
   padding: 20px;
   border-radius: 8px;
-  width: 750px;
+  width: 700px;
   height: 500px;
   max-width: 100%;
   color: #FF5A6F; 
@@ -59,4 +59,14 @@
 
 .modal-content button:hover {
   background-color: #FF2A44; 
+}
+
+@media (max-width: 768px){
+  .modal-content{
+    width: 650px;
+   height:  500px;
+  }
+  .modal-content button {
+    margin-left: 160px;
+  }
 }

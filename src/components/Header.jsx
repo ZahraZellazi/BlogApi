@@ -5,6 +5,7 @@ import { FaSearch } from 'react-icons/fa';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false); // State for nav visibility
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,15 +23,19 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleNav = () => {
+    setIsNavOpen(prevState => !prevState); // Toggle nav visibility
+  };
+
   return (
     <header className={`header ${isScrolled ? 'sticky' : ''}`}>
       <div className="logo">Horizon</div>
-      <nav className="nav">
-        <a href="#hotel">Hotel</a>
-        <a href="#flight">Flight</a>
-        <a href="#train">Train</a>
-        <a href="#travel">Travel</a>
-        <a href="#car-rental">Car Rental</a>
+      <nav className={`nav ${isNavOpen ? 'show' : ''}`}> {/* Change 'open' to 'show' */}
+      <a href="#Hotel">Hotel</a>
+      <a href="#Flight">Flight</a>
+      <a href="#Train">Train</a>
+      <a href="#Travel">Travel</a>
+      <a href="#Rental">Rental</a>
       </nav>
       <div className="header-right">
         <div className="search-bar">
@@ -43,7 +48,7 @@ function Header() {
           <button className="login-btn">Log in</button>
           <button className="signup-btn">Sign Up</button>
         </div>
-        <button className="hamburger">
+        <button className="hamburger" onClick={toggleNav}>
           <GiHamburgerMenu />
         </button>
       </div>

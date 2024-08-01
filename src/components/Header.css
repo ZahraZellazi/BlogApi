@@ -8,7 +8,7 @@
   background-position: center;
   color: white;
   position: sticky;
-  top: 0px;
+  top: 0;
   width: 100%;
   transition: padding 0.8s ease, background-color 0.8s ease, box-shadow 0.8s ease;
   z-index: 1000;
@@ -21,12 +21,10 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  transition: padding 0.8s ease, background-color 0.8s ease, box-shadow 0.8s ease;
 }
 
 .sticky + .content {
   padding-top: 100px;
-  
 }
 
 .header .logo {
@@ -56,6 +54,68 @@
   color: white;
   text-decoration: none;
 }
+.hamburger{
+  display: none;
+}
+@media (max-width: 768px) {
+  .header .nav {
+    display: none; 
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 750px;
+    height: 1000px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 100px 20px;
+    margin:0;
+    z-index: 1000;
+    gap: 20px;
+    transition: opacity 0.2s ease, transform 0.3s ease;
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+
+  .header .nav.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0); 
+  }
+
+  .header .nav a {
+    color: #fff;
+    margin-top: 40px;
+    padding: 15px;
+    padding-left: 400px;
+    padding-right: 400px;
+    font-size: 24px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .header .nav a:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .header .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.8s ease;
+  }
+
+  .header .search-bar {
+    display: none;
+  }
+
+  .header .auth-buttons {
+    display: none;
+  }
+}
 
 .header .header-right {
   display: flex;
@@ -65,7 +125,7 @@
   right: 45px;
   z-index: 1000;
   transition: top 0.8s ease, transform 0.8s ease;
-  gap:20px;
+  gap: 25px;
 }
 
 .header .search-bar {
@@ -100,7 +160,8 @@
   gap: 10px;
 }
 
-.header .login-btn, .header .signup-btn {
+.header .login-btn,
+.header .signup-btn {
   background: none;
   border: 1px solid white;
   color: white;
@@ -110,55 +171,8 @@
   transition: background-color 0.8s ease, color 0.8s ease;
 }
 
-.header .login-btn:hover, .header .signup-btn:hover {
+.header .login-btn:hover,
+.header .signup-btn:hover {
   background-color: white;
   color: #333;
-}
-
-.header .hamburger {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  transition: color 0.8s ease;
-}
-
-
-@media (max-width: 768px) {
-  .header .nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    transition: all 0.8s ease;
-  }
-
-  .header .nav.open {
-    display: flex;
-  }
-
-  .header .nav a {
-    color: #333;
-    padding: 10px;
-    transition: color 0.8s ease;
-  }
-
-  .header .hamburger {
-    display: block;
-  }
-
-  .header .search-bar {
-    display: none;
-  }
-
-  .header .auth-buttons {
-    display: none;
-  }
 }

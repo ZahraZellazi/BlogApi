@@ -1,39 +1,38 @@
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 300px 50px;
   background-image: url('/public/header.jpg'); 
-  background-size: 1500px auto;
+  background-size: cover;
   background-position: center;
   color: white;
-  position: relative;
-  
+  position: sticky;
+  top: 0;
+  width: 100%;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
-  display: flex;
-  align-items: center;
   position: fixed;
-  top:53px;
-  left:60px;
-  z-index:1000;
+  top: 53px;
+  left: 60px;
+  z-index: 1000;
 }
 
 .nav {
   display: flex;
   gap: 30px;
   margin-left: 30px;
-  display: flex;
   align-items: center;
   position: fixed;
-  top:60px;
-  left:420px;
-  z-index:1000;
-  gap:50px;
+  top: 60px;
+  left: 420px;
+  z-index: 1000;
+  gap: 50px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .nav a {
@@ -46,10 +45,11 @@
   display: flex;
   align-items: center;
   position: fixed;
-  top:50px;
-  right:45px;
-  z-index:1000;
-  gap:30px;
+  top: 50px;
+  right: 45px;
+  z-index: 1000;
+  gap: 30px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .search-bar {
@@ -79,14 +79,13 @@
   cursor: pointer;
 }
 
-.search-container:focus-within {
+.search-bar:focus-within {
   border: 2px solid white; 
 }
 
 .auth-buttons {
   display: flex;
   gap: 10px;
-  margin-left: 20px;
 }
 
 .login-btn, .signup-btn {
@@ -107,7 +106,18 @@
   cursor: pointer;
 }
 
+.header.scrolled {
+  opacity: 0; 
+  transform: translateY(-100%); 
+}
+
 @media (max-width: 768px) {
+  .header {
+    padding: 20px 50px;
+    background-image: url('/public/nav.jpg'); 
+    background-size: cover;
+  }
+
   .nav {
     display: none;
     flex-direction: column;
@@ -139,17 +149,5 @@
 
   .auth-buttons {
     display: none;
-  }
-  .header{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      background-image: url('/public/nav.jpg'); 
-      background-size: cover;
-      background-position: center;
-      color: white;
-      position: relative;
-    
   }
 }

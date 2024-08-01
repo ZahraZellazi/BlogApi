@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaSearch } from 'react-icons/fa';
+
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 110) { 
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="logo">Horizon</div>
       <nav className={`nav ${isNavOpen ? 'open' : ''}`}>
         <a href="#hotel">Hotel</a>
@@ -22,7 +37,9 @@ function Header() {
       <div className="header-right">
         <div className="search-bar">
           <input type="text" placeholder="Search destination..." />
-          <button><FaSearch /> </button>
+          <button>
+            <FaSearch />
+          </button>
         </div>
         <div className="auth-buttons">
           <button className="login-btn">Log in</button>

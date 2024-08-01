@@ -48,6 +48,12 @@
   color: #333; 
   font-size: 1rem; 
   outline: none; 
+  transition: border-color 0.3s ease; 
+}
+
+.modal-content input.error,
+.modal-content textarea.error {
+  border-color: red;
 }
 
 .modal-content input:focus,
@@ -67,7 +73,7 @@
   transition: background-color 0.3s ease; 
   width: 100%; 
   margin-top: 20px; 
- }
+}
 
 .modal-content button:hover {
   background-color: rgb(239, 239, 244); 
@@ -101,4 +107,10 @@
 
 .modal-close:hover {
   color: rgb(55, 72, 110);
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
 }

@@ -23,7 +23,7 @@ function BlogList() {
       const data = await listAllBlogs();
       const blogsWithImages = data.map(blog => ({
         ...blog,
-        imageUrl: `https://picsum.photos/seed/${blog.id}/300/200` // Use blog.id or any other unique identifier
+        imageUrl: `https://picsum.photos/seed/${blog.id}/300/200` 
       }));
       
       setBlogs(blogsWithImages);

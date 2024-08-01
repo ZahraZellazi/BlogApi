@@ -8,7 +8,9 @@
     margin: 20px;
     width: 100%;
     max-width: 800px;
-    height : 200px
+    height : 200px;
+    z-index: 1000;
+    margin-top: 200px;
   }
   
   .blog-post-card:hover {

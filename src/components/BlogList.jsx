@@ -12,10 +12,30 @@ function BlogList() {
   const [loading, setLoading] = useState(true);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState(''); 
+  const [modalMode, setModalMode] = useState('');
+  const [isVisible, setIsVisible] = useState(true); // State for visibility
 
   useEffect(() => {
     fetchBlogs();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const threshold = 500; // Adjust this threshold as needed
+
+      if (scrollTop > threshold) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const fetchBlogs = () => {
@@ -100,17 +120,19 @@ function BlogList() {
         <FaPlus size={24} />
         Add Blog
       </button>
-      {blogs.map((post, index) => (
-        <BlogPost
-          key={post.id}
-          title={post.title}
-          author={`User ${post.userId}`}
-          time={`Posted ${index + 1}h ago`}
-          image={`https://via.placeholder.com/300?text=Post+${post.id}`}
-          onUpdate={() => openModal(post, 'update')}
-          onDelete={() => handleDelete(post.id)}
-        />
-      ))}
+      <div className={`blog-list-content ${isVisible ? 'visible' : 'hidden'}`}>
+        {blogs.map((post, index) => (
+          <BlogPost
+            key={post.id}
+            title={post.title}
+            author={`User ${post.userId}`}
+            time={`Posted ${index + 1}h ago`}
+            image={`https://via.placeholder.com/300?text=Post+${post.id}`}
+            onUpdate={() => openModal(post, 'update')}
+            onDelete={() => handleDelete(post.id)}
+          />
+        ))}
+      </div>
       {isModalOpen && (
         <UpdateModal
           blog={selectedBlog}

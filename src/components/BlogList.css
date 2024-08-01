@@ -1,45 +1,53 @@
 .blog-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    margin-top: 70px;
-  }
-
-  .error-message {
-    color: red;
-    font-weight: bold;
-    margin: 20px;
-    text-align: center;
-  }
-
-  .loading-message {
-    text-align: center;
-    font-size: 18px;
-    margin: 20px;
-  }
-  .add-blog-button {
-    background: #FF5A6F;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    position: absolute; 
-    top: 700px; 
-    right: 20px; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 70px;
+  z-index: -1;
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
-  
-  .add-blog-button:hover {
-    background: #FF2A44;
-  }
-  
-  .add-blog-button svg {
-    margin-right: 8px;
-  }
-  
-  
-  
+
+.blog-list.hidden {
+  opacity: 0; /* Hide blog list when not visible */
+}
+
+.blog-list.visible {
+  opacity: 1; /* Show blog list when visible */
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  margin: 20px;
+}
+
+.add-blog-button {
+  background: #FF5A6F;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: absolute; 
+  top: 700px; 
+  right: 20px; 
+}
+
+.add-blog-button:hover {
+  background: #FF2A44;
+}
+
+.add-blog-button svg {
+  margin-right: 8px;
+}
